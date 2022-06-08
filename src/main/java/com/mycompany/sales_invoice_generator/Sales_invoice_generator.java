@@ -4,17 +4,24 @@
  */
 
 package com.mycompany.sales_invoice_generator;
-
+import com.mycompany.sales_invoice_generator.Model.InvoiceHeader;
+import com.mycompany.sales_invoice_generator.Model.FileOperations;
 import com.mycompany.sales_invoice_generator.View.mainFrame;
+import static java.sql.DriverManager.println;
 
 /**
  *
  * @author ahmed
  */
 public class Sales_invoice_generator {
+        
+       public static FileOperations inOut;
+       public static mainFrame mainframe;
 
     public static void main(String[] args) {
-       mainFrame mainframe=new mainFrame();
+       inOut = new FileOperations();
+        mainframe = new mainFrame();
        mainframe.setVisible(true);
+  
     }
 }
