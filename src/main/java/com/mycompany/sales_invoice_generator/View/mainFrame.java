@@ -395,7 +395,7 @@ public class mainFrame extends javax.swing.JFrame {
         jTextField1.setText(model.getValueAt(i, 0).toString());
        }
        if(model.getValueAt(i, 1)!=null){
-        jTextField2.setText(model.getValueAt(i, 1).toString());
+         jTextField2.setText(model.getValueAt(i, 1).toString());
        }
         if(model.getValueAt(i, 2)!=null){
         jTextField3.setText(model.getValueAt(i, 2).toString());
@@ -443,26 +443,26 @@ public class mainFrame extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         String headerName="";
-         String headerPath="";
-         String headerFileName="";
-         String lineName="";
-         String linePath="";
-          String lineFileName="";
+        String headerPath="";
+        String headerFileName="";
+        String lineName="";
+        String linePath="";
+        String lineFileName="";
         JFileChooser headerFChoose = new JFileChooser();
-         int headerOption = headerFChoose.showOpenDialog(this);
-          if(headerOption == JFileChooser.APPROVE_OPTION){ 
+        int headerOption = headerFChoose.showSaveDialog(this);
+        if(headerOption == JFileChooser.APPROVE_OPTION){ 
             headerName = headerFChoose.getSelectedFile().getName();
             headerPath = headerFChoose.getSelectedFile().getParentFile().getPath();  
             headerFileName = headerPath + headerName;
         }
-          JFileChooser lineFChoose = new JFileChooser();
-         int lineOption = lineFChoose.showOpenDialog(this);
-          if(lineOption == JFileChooser.APPROVE_OPTION){  
+        JFileChooser lineFChoose = new JFileChooser();
+        int lineOption = lineFChoose.showSaveDialog(this);
+        if(lineOption == JFileChooser.APPROVE_OPTION){  
             lineName = lineFChoose.getSelectedFile().getName();   
             linePath = lineFChoose.getSelectedFile().getParentFile().getPath();
             lineFileName = linePath + lineName;
-          }
-          Sales_invoice_generator.inOut.writeFile(new File(headerFileName),new File(lineFileName) ,jTable1,jTable2);
+        }
+        Sales_invoice_generator.inOut.writeFile(new File(headerFileName),new File(lineFileName) ,jTable1,jTable2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -476,27 +476,28 @@ public class mainFrame extends javax.swing.JFrame {
 
          JFileChooser headerFChoose = new JFileChooser();
          int headerOption = headerFChoose.showOpenDialog(this);
-          if(headerOption == JFileChooser.APPROVE_OPTION){
+         if(headerOption == JFileChooser.APPROVE_OPTION){
               DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-                for(int i = Sales_invoice_generator.inOut.getInvoicesSize();i>0;i--){
+              for(int i = Sales_invoice_generator.inOut.getInvoicesSize();i>0;i--){
                    Sales_invoice_generator.inOut.deleteInvoice(i-1);
                    model.removeRow(i-1);
               
-                 }
-          headerName = headerFChoose.getSelectedFile().getName();
-              headerPath = headerFChoose.getSelectedFile().getParentFile().getPath();
-              headerFileName = headerPath +headerName;
-           }
-                     JFileChooser lineFChoose = new JFileChooser();
+                }
+               headerName = headerFChoose.getSelectedFile().getName();
+               headerPath = headerFChoose.getSelectedFile().getParentFile().getPath();
+               headerFileName = headerPath +headerName;
+            }
+         JFileChooser lineFChoose = new JFileChooser();
          int lineOption = lineFChoose.showOpenDialog(this);
-          if(lineOption == JFileChooser.APPROVE_OPTION){
+         if(lineOption == JFileChooser.APPROVE_OPTION){
                DefaultTableModel model2 = (DefaultTableModel)jTable2.getModel();
-              model2.setRowCount(0);
+               model2.setRowCount(0);
                lineName = lineFChoose.getSelectedFile().getName();
-             linePath = lineFChoose.getSelectedFile().getParentFile().getPath();
-             lineFileName = linePath + lineName;
+               linePath = lineFChoose.getSelectedFile().getParentFile().getPath();
+               lineFileName = linePath + lineName;
           }
-              Sales_invoice_generator.inOut.readFile(new File(headerFileName),new File(lineFileName),jTable1);
+          Sales_invoice_generator.inOut.readFile(new File(headerFileName),new File(lineFileName),jTable1);
+            
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked

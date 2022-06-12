@@ -64,8 +64,8 @@ public class FileOperations {
         this.invoices.add((i), invoice);
         invoice.setInvoiceNumber(i+1);
         
-        int index = this.invoices.size();
-        return this.invoices.get(index-1);
+        int index = this.invoices.size()-1;
+        return this.invoices.get(index);
         
     }
     
@@ -74,7 +74,7 @@ public class FileOperations {
      * @param index
      */
     public void deleteInvoice(int index){
-    this.invoices.remove(index);
+        this.invoices.remove(index);
     }
     
     /**
@@ -82,7 +82,7 @@ public class FileOperations {
      * @return
      */
     public short getInvoicesSize(){
-    return (short)this.invoices.size();
+        return (short)this.invoices.size();
     }
     
        
