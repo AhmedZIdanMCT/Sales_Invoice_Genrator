@@ -110,7 +110,10 @@ public class FileOperations {
                     String[] headerAttributes = headerLine.split(","); 
                     InvoiceHeader invoice=this.createInvoice(); 
                     invoice.setInvoiceNumber(Integer.parseInt(headerAttributes[0]));
+                    if(headerAttributes[1].matches("\\d{2}-\\d{2}-\\d{4}")){
                     invoice.setInvoiceDate(headerAttributes[1]);
+                    }
+                    else{System.err.println("Wrong Date Format");}
                     invoice.setCustomerName(headerAttributes[2]);
                     // read next line before looping 
                     // if end of file reached, line would be null 
@@ -129,9 +132,15 @@ public class FileOperations {
                     // if end of file reached, line would be null 
                     lineLine = lbr.readLine();
                     
+                  
+                    
             }
             
-            } catch (IOException ioe) {}
+            } catch (FileNotFoundException ioe) {System.err.println("File Not Found");}
+            catch (IOException ex) {
+                 System.err.println("wrong file format");
+            Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
             
@@ -173,9 +182,12 @@ public class FileOperations {
             
              hbw.close();
              lbw.close();
-        } catch (IOException ex) {
+        } catch (FileNotFoundException ioe) {System.err.println("File Not Found");}
+        catch (IOException ex) {
+            System.err.println("wrong file format");
             Logger.getLogger(FileOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
        
        
     }
@@ -205,5 +217,61 @@ public class FileOperations {
         for(int i=0;i<model.getRowCount();i++){
             model.setValueAt(this.invoices.get(i).getCustomerName(), i, 2);
         }
+    }
+    
+    public static void main(String[] args) {
+        String headerName="\\InvoiceHeader.csv";
+        String path=System. getProperty("user.dir");
+        
+       String lineName="\\InvoiceLine.csv";
+        String headerFileName=path+headerName;
+        String lineFileName=path+lineName;
+        File headerFile=new File(headerFileName);
+        File lineFile=new File(lineFileName);
+        System.out.println("Header File is :"+headerFileName);
+        System.out.println("line File is :"+lineFileName);
+      try {
+            FileReader hfr = new FileReader(headerFile);
+            BufferedReader hbr = new BufferedReader(hfr);
+            FileReader lfr = new FileReader(lineFile);
+            BufferedReader lbr = new BufferedReader(lfr);
+           // read the first line from the text file 
+           String headerLine = hbr.readLine(); 
+           String lineLine = lbr.readLine();
+           // loop until all lines are read 
+            while (headerLine != null) { 
+                    // use string.split to load a string array with the values from 
+                    // each line of 
+                    // the file, using a comma as the delimiter 
+                    String[] headerAttributes = headerLine.split(","); 
+                 
+                    System.out.println(headerAttributes[0]);
+                    System.out.println(headerAttributes[1]);
+                    System.out.println(headerAttributes[2]);
+                    // read next line before looping 
+                    // if end of file reached, line would be null 
+                    headerLine = hbr.readLine(); 
+            }
+            while (lineLine != null) { 
+                    // use string.split to load a string array with the values from 
+                    // each line of 
+                    // the file, using a comma as the delimiter 
+                    String[] lineAttributes = lineLine.split(","); 
+                    
+                    System.out.println(lineAttributes[1]);
+                    System.out.println(Float.parseFloat(lineAttributes[2]));
+                    System.out.println(Short.parseShort(lineAttributes[3]));
+                    // read next line before looping 
+                    // if end of file reached, line would be null 
+                    lineLine = lbr.readLine();
+                    
+            }
+            
+            } catch (IOException ioe) {}
+
+
+          
+        
+       
     }
 }
