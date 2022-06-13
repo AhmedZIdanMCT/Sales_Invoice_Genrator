@@ -453,14 +453,14 @@ public class mainFrame extends javax.swing.JFrame {
         if(headerOption == JFileChooser.APPROVE_OPTION){ 
             headerName = headerFChoose.getSelectedFile().getName();
             headerPath = headerFChoose.getSelectedFile().getParentFile().getPath();  
-            headerFileName = headerPath + headerName;
+            headerFileName = headerPath +"\\"+ headerName;
         }
         JFileChooser lineFChoose = new JFileChooser();
         int lineOption = lineFChoose.showSaveDialog(this);
-        if(lineOption == JFileChooser.APPROVE_OPTION){  
+        if(lineOption == JFileChooser.APPROVE_OPTION){ 
             lineName = lineFChoose.getSelectedFile().getName();   
             linePath = lineFChoose.getSelectedFile().getParentFile().getPath();
-            lineFileName = linePath + lineName;
+            lineFileName = linePath +"\\"+ lineName;
         }
         Sales_invoice_generator.inOut.writeFile(new File(headerFileName),new File(lineFileName) ,jTable1,jTable2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -485,7 +485,7 @@ public class mainFrame extends javax.swing.JFrame {
                 }
                headerName = headerFChoose.getSelectedFile().getName();
                headerPath = headerFChoose.getSelectedFile().getParentFile().getPath();
-               headerFileName = headerPath +headerName;
+               headerFileName = headerPath +"\\"+headerName;
             }
          JFileChooser lineFChoose = new JFileChooser();
          int lineOption = lineFChoose.showOpenDialog(this);
@@ -494,7 +494,7 @@ public class mainFrame extends javax.swing.JFrame {
                model2.setRowCount(0);
                lineName = lineFChoose.getSelectedFile().getName();
                linePath = lineFChoose.getSelectedFile().getParentFile().getPath();
-               lineFileName = linePath + lineName;
+               lineFileName = linePath +"\\"+ lineName;
           }
           Sales_invoice_generator.inOut.readFile(new File(headerFileName),new File(lineFileName),jTable1);
             
