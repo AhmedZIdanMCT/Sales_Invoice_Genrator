@@ -6,6 +6,8 @@
 package com.mycompany.sales_invoice_generator;
 import com.mycompany.sales_invoice_generator.Model.FileOperations;
 import com.mycompany.sales_invoice_generator.View.mainFrame;
+
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +38,7 @@ public class Sales_invoice_generator {
         String lineFileName=path+lineName;
         File headerFile=new File(headerFileName);
         File lineFile=new File(lineFileName);
-        
+
       try {
             FileReader hfr = new FileReader(headerFile);
             BufferedReader hbr = new BufferedReader(hfr);
