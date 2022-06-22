@@ -111,7 +111,7 @@ public class FileOperations {
                 String[] headerAttributes = headerLine.split(",");
                 InvoiceHeader invoice=this.createInvoice();
                 invoice.setInvoiceNumber(Integer.parseInt(headerAttributes[0]));
-                if(headerAttributes[1].matches("\\d{2}/\\d{2}/\\d{4}")){
+                if(headerAttributes[1].matches("\\d{2}-\\d{2}-\\d{4}")){
                     invoice.setInvoiceDate(headerAttributes[1]);
                 }
                 else{System.err.println("Wrong Date Format");}
