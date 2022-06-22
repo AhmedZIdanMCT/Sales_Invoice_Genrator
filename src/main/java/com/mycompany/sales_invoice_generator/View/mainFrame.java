@@ -424,6 +424,7 @@ public class mainFrame extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model2 = (DefaultTableModel)jTable2.getModel();
          Sales_invoice_generator.inOut.deleteInvoice(jTable1.getSelectedRow());
         for(int i =jTable1.getSelectedRow()+1;i<jTable1.getRowCount();i++){
              InvoiceHeader obj=Sales_invoice_generator.inOut.getInvoices().get(i-1);
@@ -431,7 +432,11 @@ public class mainFrame extends javax.swing.JFrame {
              jTable1.setValueAt(obj.getInvoiceNumber(), i, 0);
          }
          model.removeRow(jTable1.getSelectedRow());
-         
+        model2.setRowCount(0);
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
@@ -462,7 +467,9 @@ public class mainFrame extends javax.swing.JFrame {
             linePath = lineFChoose.getSelectedFile().getParentFile().getPath();
             lineFileName = linePath +"\\"+ lineName;
         }
-        Sales_invoice_generator.inOut.writeFile(new File(headerFileName),new File(lineFileName) ,jTable1,jTable2);
+        File header=new File(headerFileName);
+        File line = new File(lineFileName);
+        Sales_invoice_generator.inOut.writeFile(header,line ,jTable1,jTable2);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

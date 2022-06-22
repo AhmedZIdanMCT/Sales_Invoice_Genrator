@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Sales_invoice_generator" target="18" />
+      <module name="Sales_invoice_generator" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
